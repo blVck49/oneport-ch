@@ -20,12 +20,14 @@ This project is built with:
 -   [Nodejs/ExpressJS](https://expressjs.com)
 -   [MongoDB](https://cloud.mongodb.com)
 -   [RabbitMQ](https://rabbitmq.com/)
+-   [Postman](Documentation)
 
 ### Services
 
 -   [MongoDB](https://cloud.mongodb.com): Database management
 -   [Docker]
 -   [RabbitMQ]
+-   [RequestBin](https://pipedream.com/requestbin): Collect HTTP and Webhook Requests
 
 ### Conventions
 
