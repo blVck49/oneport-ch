@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -6,7 +7,6 @@ const fs = require("fs");
 const path = require("path");
 const morgan = require("morgan");
 const connectDb = require("./src/connection/database");
-const dotenv = require("dotenv");
 const { logger } = require("./src/helpers/logger");
 const cors = require("cors");
 const { TaskQueue, setupWebhook} = require("./src/utils/rabbitMQ")
@@ -14,9 +14,6 @@ const { TaskQueue, setupWebhook} = require("./src/utils/rabbitMQ")
 const user = require("./src/routes/user");
 const task = require("./src/routes/task");
 const subscribe = require("./src/routes/subscribe.js");
-
-
-dotenv.config({ path: "config.env" });
 
 process.on("uncaughtException", (err) => {
   // eslint-disable-next-line no-console

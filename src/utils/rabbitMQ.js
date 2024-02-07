@@ -19,7 +19,6 @@ exports.TaskQueue = async () => {
             await channel.bindQueue(queue, taskExchangeName, queue);
         }))
 
-
         //Consume messages from each queue concurrently
         await Promise.all(workerQueues.map(async (queue) => {
             channel.consume(queue, async (msg) => {
