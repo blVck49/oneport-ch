@@ -3,7 +3,7 @@ const { success, error } = require("../helpers/helper");
 
 const Task = require("../models/task");
 const { publishTask } = require("../utils/publish-task")
-const { notifySubscribers } = require("../utils/notify-subscribers") 
+const { notifySubscribers } = require("../utils/notify-subscribers")
 
 
 exports.create = async (req, res) => {
@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
     const data = req.body
     data.createdBy = req.user._id
     await publishTask(data, routingKey)
-    await notifySubscribers("task creation", data )
+    await notifySubscribers("task creation", data)
     return success(res, 201, data);
   } catch (err) {
     logger.error("🔥 error: %o", err);
@@ -27,7 +27,7 @@ exports.update = async (req, res) => {
     const data = req.body
     const routingKey = "update"
     publishTask(data, routingKey)
-    await notifySubscribers("task update", data )
+    await notifySubscribers("task update", data)
     return success(res, 201, "task updated successfully");
   } catch (err) {
     logger.error("🔥 error: %o", err);
@@ -36,14 +36,14 @@ exports.update = async (req, res) => {
 };
 
 exports.fetch = async (req, res) => {
-    logger.debug("Fetching all tasks");
-    try {
-      const task = await Task.find()
-      return success(res, 201, task);
-    } catch (err) {
-      logger.error("🔥 error: %o", err);
-      return error(res, 500, err);
-    }
+  logger.debug("Fetching all tasks");
+  try {
+    const task = await Task.find()
+    return success(res, 201, task);
+  } catch (err) {
+    logger.error("🔥 error: %o", err);
+    return error(res, 500, err);
+  }
 };
 
 exports.get = async (req, res) => {
@@ -61,7 +61,7 @@ exports.remove = async (req, res) => {
   logger.debug("delete a task");
   try {
     await Task.findByIdAndDelete(req.params._id)
-    await notifySubscribers("task deleted", data )
+    await notifySubscribers("task deleted", data)
     return success(res, 201);
   } catch (err) {
     logger.error("🔥 error: %o", err);
@@ -71,14 +71,14 @@ exports.remove = async (req, res) => {
 
 exports.createTask = async (data) => {
   const task = await Task.create({
-      ...data,
-    });
-    await task.save();
-    return task
+    ...data,
+  });
+  await task.save();
+  return task
 }
 
 exports.updateTask = async (data) => {
-    const task = await Task.findByIdAndUpdate(req.params._id, {...req.body}, {new: true})
-    return task
+  const task = await Task.findByIdAndUpdate(req.params._id, { ...req.body }, { new: true })
+  return task
 }
 

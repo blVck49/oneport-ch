@@ -12,8 +12,8 @@ exports.publishTask = async (data, routingKey) => {
         channel.publish(process.env.R_EXCHANGE_NAME, routingKey, Buffer.from(message), { persistent: true });
         logger.debug(`Sent task with data: ${data} and routing key: ${routingKey}`);
         setTimeout(() => {
-        connection.close();
-        }, 500); 
+            connection.close();
+        }, 500);
     } catch (err) {
         logger.error("🔥 error: %o", err);
         return error(res, 500, err);

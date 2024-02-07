@@ -22,24 +22,24 @@ exports.create = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-    logger.debug("Logging in");
-    try{
-      let user = res.locals.user
-      const { password } = req.body
-      const valid_password = await verify_hash(
+  logger.debug("Logging in");
+  try {
+    let user = res.locals.user
+    const { password } = req.body
+    const valid_password = await verify_hash(
       password,
       user.password
-      );
-      if (!valid_password) throw new Error ("Wrong Email or Password")
-      const token = await setup_token(user);
-      user = await User.findByIdAndUpdate(user.id, {token}, {new: true})
-      Reflect.deleteProperty(user._doc, "password");
-      return success(res, 201, user);
-    }catch (err) {
-      logger.error("🔥 error: %o", err);
-      return error(res, 500, err);
-    }
-  };
+    );
+    if (!valid_password) throw new Error("Wrong Email or Password")
+    const token = await setup_token(user);
+    user = await User.findByIdAndUpdate(user.id, { token }, { new: true })
+    Reflect.deleteProperty(user._doc, "password");
+    return success(res, 201, user);
+  } catch (err) {
+    logger.error("🔥 error: %o", err);
+    return error(res, 500, err);
+  }
+};
 
 exports.currentUser = async (data) => {
   logger.debug("Getting current user...");

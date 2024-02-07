@@ -1,14 +1,14 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { createValidator} = require("express-joi-validation")
+const { createValidator } = require("express-joi-validation")
 
 exports.validator = createValidator();
 
 const response = ({ res, status, code, message, data }) => {
   return res.status(code).json({
-      status,
-      message,
-      data
+    status,
+    message,
+    data
   });
 };
 

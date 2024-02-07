@@ -13,7 +13,7 @@ exports.notifySubscribers = async (eventType, data) => {
         for (const subscriber of subscribers) {
             await axios.post(subscriber.url, data);
             logger.debug(`Notified subscriber at ${subscriber.url} about ${eventType}`);
-        }  
+        }
     } catch (err) {
         logger.error("🔥 error: %o", err);
         return error(res, 500, `Error notifying subscriber ${err}`);

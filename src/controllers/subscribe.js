@@ -16,6 +16,6 @@ exports.subscribe = async (req, res) => {
 };
 
 exports.create = async (data) => {
-    const subscribe = await Subscribe.create(data)
-    await subscribe.save()
+  const subscribe = await Subscribe.create(data)
+  await subscribe.save()
 }

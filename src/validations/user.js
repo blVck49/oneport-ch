@@ -33,4 +33,4 @@ const validateLogin = async (req, res, next) => {
 }
 
 
-module.exports = { registerSchema, loginSchema, validateRegistration, validateLogin}
+module.exports = { registerSchema, loginSchema, validateRegistration, validateLogin }
