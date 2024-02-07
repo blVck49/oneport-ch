@@ -65,4 +65,9 @@ To run this project,
 npm install
 npm run start:dev
 
+With Docker 
+
+docker build . -t {IMAGE}
+docker run -d -p {PORT}:{PORT} {IMAGE}
+
 ```
